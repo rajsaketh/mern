@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { register } from './UserFunctions'
+import './Register.css'
+
 
 class Register extends Component {
     constructor() {
@@ -9,20 +11,20 @@ class Register extends Component {
             last_name: '',
             email: '',
             password: '',
-            first_nameError: "",
-            last_nameError: "",
-            emailError: "",
-            passwordError: ""
+            error: '',
+            email_error: '',
+            password_error: '',
+            status: '',
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onChange (e) {
+    onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault()
 
         const user = {
@@ -30,34 +32,50 @@ class Register extends Component {
             last_name: this.state.last_name,
             email: this.state.email,
             password: this.state.password,
-            first_nameError:this.state.first_nameError,
-            last_nameError:this.state.last_nameError,
-            emailError:this.state.emailError,
-            passwordError:this.state.passwordError,
+
 
         }
         const errors = {}
         const emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         errors.email = !user.email.match(emailformat) ?
             "Invalid Email" : ""
+        this.setState({ email_error: errors.email })
+        if (errors.email!=="") {
+            alert(errors.email)
+        }
         errors.password = user.password.length < 6 ?
             "Password should be more than 6 characters" : ""
+            if (errors.password!=="") {
+                alert(errors.password)
+            }
+        
         console.log(errors)
 
         if (errors.email === "" && errors.password === "") {
+
             register(user).then(res => {
-                this.props.history.push(`/login`)
+                if (!res.error) {
+                    this.setState({ status: res.status })
+                    alert(this.state.status);
+                    this.props.history.push(`/`)
+                } else {
+                    this.setState({ error: res.error })
+                    alert(this.state.error);
+                }
+
             })
         }
     }
 
-    render () {
+    render() {
         return (
             <div className="container">
+
                 <div className="row">
                     <div className="col-md-6 mt-5 mx-auto">
-                        <form noValidate onSubmit={this.onSubmit}>
-                            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <form onSubmit={this.onSubmit}>
+                            <h3>Producer Tool Box</h3>
+                            <h2 className="title center-limit-width">Register</h2>
                             <div className="form-group">
                                 <label htmlFor="first_name">First Name</label>
                                 <input type="text"
@@ -65,8 +83,9 @@ class Register extends Component {
                                     name="first_name"
                                     placeholder="Enter First Name"
                                     value={this.state.first_name}
-                                    onChange={this.onChange} />
+                                    onChange={this.onChange} required />
                             </div>
+
                             <div className="form-group">
                                 <label htmlFor="last_name">Last Name</label>
                                 <input type="text"
@@ -74,7 +93,7 @@ class Register extends Component {
                                     name="last_name"
                                     placeholder="Enter Last Name"
                                     value={this.state.last_name}
-                                    onChange={this.onChange} />
+                                    onChange={this.onChange} required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email Address</label>
@@ -83,8 +102,11 @@ class Register extends Component {
                                     name="email"
                                     placeholder="Enter Email"
                                     value={this.state.email}
-                                    onChange={this.onChange} />
+                                    onChange={this.onChange} required />
                             </div>
+                            {/* <div className="alert alert-danger"
+                                style={{visibility: this.state.email_error !== '' ? 'visible' : 'hidden' }}>{this.state.email_error}</div>
+                            */}
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <input type="password"
@@ -92,11 +114,13 @@ class Register extends Component {
                                     name="password"
                                     placeholder="Enter Password"
                                     value={this.state.password}
-                                    onChange={this.onChange} />
+                                    onChange={this.onChange} required />
                             </div>
-                            <button type="submit" className="btn btn-lg btn-primary btn-block">
+                            <button type="submit" className=" btn1  btn-block">
                                 Register
                             </button>
+                            <p className="para1">Alredy registred? <a href="/">Login</a></p>
+                            <p className="para1"> <a href="#">Contact Us </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">  Terms & Conditions </a></p>
                         </form>
                     </div>
                 </div>

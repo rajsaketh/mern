@@ -10,6 +10,7 @@ export const register = newUser => {
     })
     .then(response => {
       console.log('Registered')
+      return response.data
     })
 }
 
@@ -36,6 +37,25 @@ export const getProfile = token => {
     .then(response => {
       console.log(response)
       return response.data
+    })
+    
+    
+    .catch(err => {
+      console.log(err)
+    })
+}
+export const registerRating = existingUser => {
+  return axios
+    .post('users/rating', {
+     
+      email: existingUser.email,
+      message:existingUser.message,
+      rating:existingUser.rating,
+    })
+    .then(response => {
+      console.log('added star rating');
+      //console.log(response);
+      
     })
     .catch(err => {
       console.log(err)

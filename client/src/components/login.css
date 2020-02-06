@@ -1,0 +1,53 @@
+h3{
+
+    text-align: center;
+    color:#087cc2  ;
+}
+
+h2{
+
+    font-size: 2.2rem;
+    text-align: center;
+    color: #333;
+    padding: 0;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin: 2.2rem auto 1.4rem auto;
+    margin-top: 2.2rem;
+    margin-right: auto;
+    margin-bottom: 1.4rem;
+    margin-left: auto;
+    max-width: 600px;
+   
+}
+.para{
+  
+    text-align: center;
+    margin-bottom: 1.4rem;
+}
+.btn {
+    background-color: #fe5e3c; 
+    border: none;
+    color: white;
+    padding: 8px 28px;
+    text-align: center;
+    margin: 9px 200px;
+    font-size: 16px;
+  }
+  .p-viewer2{
+    float: right;
+    margin-top: -30px;
+    padding-right: 20px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: #087cc2;
+  }
+   h4{
+
+   text-align: center;
+  }
+  
+

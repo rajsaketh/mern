@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 
 
 const User = require('../models/User')
+const Rate=require('../models/Rating')
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -37,6 +38,7 @@ users.post('/register', (req, res) => {
         })
       } else {
         res.json({ error: 'User already exists' })
+        
       }
     })
     .catch(err => {
@@ -77,21 +79,46 @@ users.post('/login', (req, res) => {
 
 users.get('/profile', (req, res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-
+   
+  
   User.findOne({
     _id: decoded._id
   })
     .then(user => {
+     
+      
       if (user) {
         res.json(user)
       } else {
         res.send('User does not exist')
       }
     })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
-})
+  })
+   
+    
+
+  users.post('/rating', (req, res) => {
+    const today = new Date()
+    //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    const Data = {
+      
+      email: req.body.email,
+      message:req.body.message,
+      rating:req.body.rating,
+      created: today
+    }
+  
+    Rate.create(Data)
+            .then(user => {
+              res.json({ status: user.email + 'rated successfully!' })
+            })
+            .catch(err => {
+              res.send('error: ' + err)
+            })
+        })
+    
+      
+
 
 
 

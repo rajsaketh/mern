@@ -1,0 +1,15 @@
+.para1{
+  
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn1 {
+    background-color: #fe5e3c; 
+    border: none;
+    color: white;
+    padding: 8px 28px;
+    text-align: center;
+    margin: 9px 0px;
+    font-size: 16px;
+  }
