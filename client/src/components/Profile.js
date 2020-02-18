@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getProfile, registerRating } from './UserFunctions'
-import './profile.css'
+import './css/profile.css'
 class Profile extends Component {
   constructor() {
     super()
@@ -35,8 +35,8 @@ class Profile extends Component {
 
 
   onSubmit(e) {
-    e.preventDefault();
-    console.log("onsubmit1");
+    e.preventDefault()
+    
     const user = {
       
       email: this.state.email,
@@ -52,13 +52,7 @@ class Profile extends Component {
    })
   }
     
-       
-    
-     
-
-
-  
-
+ 
 // handleClick(){
 //  // console.log(this.state);
 //   // this.setState({rating});
@@ -69,7 +63,13 @@ class Profile extends Component {
   // logOut() {
   //   localStorage.removeItem('usertoken');
   //   this.props.history.push(`/`);
-  // }
+  // }      
+    
+     
+
+
+  
+
 
 
   render() {
@@ -83,7 +83,7 @@ class Profile extends Component {
 
         <div className="modal fade" id="myModal" role="dialog">
           <div className="modal-dialog">
-          <form noValidate onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit}>
             
               <div className="modal-content">
               
@@ -91,7 +91,9 @@ class Profile extends Component {
                   <button type="button" className="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div className="modal-body">
-                  <h2>Please give your rating</h2>
+                  <h4>How was your experiance</h4>
+                  <h4>with our website ?</h4>
+
                   <fieldset className="rating">
                     <input type="radio" id="star5" name="rating" value="5" onClick={this.onChange} /><label className="full" htmlFor="star5" title="Awesome - 5 stars"></label>
                     <input type="radio" id="star4" name="rating" value="4" onClick={this.onChange}/><label className="full" htmlFor="star4" title="Pretty good - 4 stars"></label>
@@ -99,8 +101,8 @@ class Profile extends Component {
                     <input type="radio" id="star2" name="rating" value="2" onClick={this.onChange}/><label className="full" htmlFor="star2" title="Kinda bad - 2 stars"></label>
                     <input type="radio" id="star1" name="rating" value="1" onClick={this.onChange}/><label className="full" htmlFor="star1" title="bad - 1 star"></label>
                   </fieldset>
-                  <textarea style={{visibility: this.state.rating == '5' ? 'hidden' : 'visible' }} rows="2" cols="50" name="message" onChange={this.onChange}  placeholder="please add your feed back here....">
-
+                  <textarea  rows="2" cols="50" name="message" onChange={this.onChange}  placeholder="Type your feedback here....">
+                  {/* style={{visibility: this.state.rating <= '3' ? 'visible' : 'hidden' }} */}
                   </textarea>
                 </div>
                 <div className="modal-footer">

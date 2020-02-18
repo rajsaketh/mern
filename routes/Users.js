@@ -99,7 +99,7 @@ users.get('/profile', (req, res) => {
 
   users.post('/rating', (req, res) => {
     const today = new Date()
-    //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    
     const Data = {
       
       email: req.body.email,

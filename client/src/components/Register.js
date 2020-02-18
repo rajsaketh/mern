@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { register } from './UserFunctions'
-import './Register.css'
+import './css/Register.css'
 
 
 class Register extends Component {

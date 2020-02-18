@@ -9,9 +9,12 @@
   }
 
 
-.textarea{
-  text-align: center;
+  textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
  
   h2 { font-size: 1.5em; margin: 20px; text-align: center;}
   
@@ -19,13 +22,13 @@
 
   .rating { 
     border: none;
-    padding-right: 180px;
+    padding-right: 140px;
   }
   
   .rating > input { display: none; } 
   .rating > label:before { 
     margin: 5px;
-    font-size: 1.25em;
+    font-size: 1.9em;
     font-family: FontAwesome;
     display: inline-block;
     content: "\f005";
